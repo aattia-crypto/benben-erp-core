@@ -1,0 +1,33 @@
+BENBEN END USER LICENSE AGREEMENT (EULA)
+
+Copyright (c) 2026 Benben Software, Inc. All rights reserved.
+
+IMPORTANT: READ CAREFULLY BEFORE INSTALLING OR USING BENBEN.
+
+By clicking "I Agree" or installing this software, you agree to be bound by the terms of this Agreement. If you do not agree, do not install or use the software.
+
+1. LICENSE GRANT
+Benben Software, Inc. grants you a non-exclusive, non-transferable license to install and use Benben on devices you own or control for your internal business operations.
+
+2. RESTRICTIONS
+You may not reverse engineer, decompile, sublicense, rent, or redistribute the software except as expressly permitted by law.
+
+3. DATA
+Benben is local-first. Your business data is stored on your device unless you configure optional backup destinations. You are responsible for backups and compliance with applicable laws.
+
+4. DISCLAIMER
+THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. BENBEN SOFTWARE, INC. DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+
+5. LIMITATION OF LIABILITY
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, BENBEN SOFTWARE, INC. SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES ARISING FROM USE OF THE SOFTWARE.
+
+6. TERMINATION
+This license terminates if you breach these terms. Upon termination you must cease use and uninstall the software.
+
+7. GOVERNING LAW
+This Agreement is governed by the laws of the jurisdiction in which Benben Software, Inc. is established, without regard to conflict of law principles.
+
+8. CONTACT
+For questions regarding this Agreement, licensing, or legal notices, contact Benben Software, Inc. at:
+
+legal@benbenerp.com

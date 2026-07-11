@@ -1,0 +1,45 @@
+node_modules/
+renderer/node_modules/
+renderer/dist/
+dist-desktop/
+renderer-dist/
+release/
+prisma/dev.db
+prisma/dev.db-journal
+.env
+.env.local
+.DS_Store
+Thumbs.db
+*.log
+release-ui-verify/
+release-verify/
+dist/
+release*/
+win-unpacked/
+# Ignore packed zip archives and backups
+*.zip
+*.bak
+*.tgz
+
+# Ignore compiled Electron distributions and release folders
+/release/
+/dist/
+/dist-desktop/
+*.exe
+
+# Ignore heavy embedded runtime binaries we don't want in cloud source code
+resources/postgres/win-x64/pgAdmin 4/
+# Ignore unpacked local distribution builds
+NexusCore-rc2/
+
+# Ignore embedded database binaries
+resources/postgres/
+
+# Staging script scratch output
+stage-err.txt
+stage-out.txt
+
+.env.production
+.env.development
+.env.production.local
+.env.development.local

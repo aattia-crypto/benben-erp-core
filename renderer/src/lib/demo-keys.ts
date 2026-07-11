@@ -1,0 +1,21 @@
+/** localStorage keys wiped when leaving demo mode (shared to avoid import cycles). */
+export const DEMO_MODULE_STORAGE_KEYS = [
+  "benben.manufacturing.v1",
+  "benben.inventory.v1",
+  "benben.crm.v1",
+  "benben.gl.v1",
+  "benben.purchasing.v1",
+  "benben.imports.v1",
+  "benben.locations.v1",
+  "benben.data_import.history.v1",
+  "benben.demo.documents.v1",
+  "benben.demo.warehouse_transfers.v1",
+  "benben.ar.v1",
+  "benben.ap.v1",
+  "benben.sales.v1",
+  "benben.company.settings.v1",
+  "benben.pos.ops.v1",
+  "benben.pos.loyalty.v1",
+  "semiflow.pos.sales.v1",
+  "semiflow.pos.queue.v1",
+] as const;

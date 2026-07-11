@@ -1,0 +1,11 @@
+Benben ERP — Release Notes (placeholder)
+
+Version 0.9.0-rc2 — Windows Release Candidate
+
+• Production hardening: email, PDF, automated backups, diagnostics
+• Release operations: update checks, migration safety, licensing foundation
+• Internationalization foundation: English and partial Spanish
+
+For support: support@benbenerp.com
+
+(Full release notes will be published with each stable channel build.)

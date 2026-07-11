@@ -1,0 +1,64 @@
+{
+  "name": "benben-erp",
+  "productName": "Benben ERP",
+  "version": "0.9.0-rc5",
+  "description": "Benben ERP — local-first Windows desktop ERP shell",
+  "private": true,
+  "workspaces": [
+    "renderer"
+  ],
+  "main": "dist-desktop/main.js",
+  "author": "Benben Software, Inc.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aattia-crypto/benben-erp.git"
+  },
+  "homepage": "https://github.com/aattia-crypto/benben-erp",
+  "bugs": {
+    "url": "https://github.com/aattia-crypto/benben-erp/issues"
+  },
+  "scripts": {
+    "start": "npm run build:desktop && cross-env NODE_ENV=production electron .",
+    "dev": "npm run build:desktop && cross-env NODE_ENV=development electron .",
+    "dev:ui": "npm run dev --workspace renderer",
+    "dev:finance-api": "npm run build:desktop && cross-env NODE_ENV=development electron desktop/scripts/dev-finance-api.mjs",
+    "start:prod": "cross-env NODE_ENV=production electron .",
+    "build": "npm run build:ui && npm run build:desktop",
+    "build:ui": "node scripts/stage-renderer.mjs && node scripts/assert-renderer-staged.mjs",
+    "build:desktop": "node scripts/write-build-stamp.mjs && node scripts/assert-renderer-staged.mjs && prisma generate && tsc -p tsconfig.node.json && node scripts/bundle-preload.mjs",
+    "build:demo": "cross-env BENBEN_BUILD_FLAVOR=demo VITE_BENBEN_DEMO_BUILD=true npm run build",
+    "start:demo": "cross-env BENBEN_BUILD_FLAVOR=demo VITE_BENBEN_DEMO_BUILD=true npm run build && cross-env BENBEN_BUILD_FLAVOR=demo NODE_ENV=production electron .",
+    "dist:demo": "cross-env BENBEN_BUILD_FLAVOR=demo VITE_BENBEN_DEMO_BUILD=true npm run build && electron-builder --win --config demo/electron-builder.yml",
+    "rebuild": "npm run build",
+    "dist": "node scripts/validate-electron-builder-config.mjs && npm run build && electron-builder --win",
+    "dist:dir": "node scripts/validate-electron-builder-config.mjs && npm run build && electron-builder --win --dir",
+    "postinstall": "prisma generate",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate dev",
+    "db:deploy": "prisma migrate deploy",
+    "db:baseline": "node scripts/generate-pg-baseline.mjs",
+    "db:studio": "prisma studio",
+    "verify:phase1": "npm run build:desktop && electron desktop/scripts/verify-phase1.mjs",
+    "verify:phase2": "npm run build:desktop && electron desktop/scripts/verify-phase2-auth.mjs",
+    "verify:packaged-prisma": "npm run dist:dir && electron desktop/scripts/verify-packaged-prisma.mjs",
+    "verify:packaged-ui": "npm run build:ui && node desktop/scripts/verify-packaged-ui.mjs --pre-package && npm run dist:dir && node desktop/scripts/verify-packaged-ui.mjs --packaged-only",
+    "verify": "npm run verify:phase1 && npm run verify:phase2"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.9.0",
+    "bcryptjs": "^3.0.2",
+    "effect": "^3.21.0",
+    "nodemailer": "^8.0.8",
+    "prisma": "^6.9.0"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^22.19.19",
+    "@types/nodemailer": "^8.0.0",
+    "cross-env": "^7.0.3",
+    "electron": "^36.9.5",
+    "electron-builder": "^26.8.1",
+    "esbuild": "^0.25.12",
+    "typescript": "^5.9.3"
+  }
+}

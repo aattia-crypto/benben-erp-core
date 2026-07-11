@@ -1,0 +1,122 @@
+directories:
+  output: dist-demo
+  buildResources: build
+appId: com.benben.erp.demo
+productName: Benben ERP Demo
+copyright: Copyright © 2026 Benben Software, Inc.
+artifactName: ${productName}-${version}-${os}-${arch}.${ext}
+extraResources:
+  - from: resources/postgres
+    to: postgres
+    filter:
+      - win-x64/bin/**
+      - win-x64/lib/**
+      - win-x64/share/**
+      - '!**/pgAdmin/**'
+      - '!**/pgAdmin 4/**'
+      - '!**/*.log'
+      - '!**/*.md'
+      - '!**/doc/**'
+      - '!**/docs/**'
+      - '!**/include/**'
+      - '!**/symbols/**'
+files:
+  - filter:
+      - node_modules/@standard-schema/spec/**
+      - node_modules/c12/**
+      - node_modules/chokidar/**
+      - node_modules/citty/**
+      - node_modules/confbox/**
+      - node_modules/consola/**
+      - node_modules/deepmerge-ts/**
+      - node_modules/defu/**
+      - node_modules/destr/**
+      - node_modules/dotenv/**
+      - node_modules/effect/**
+      - node_modules/empathic/**
+      - node_modules/exsolve/**
+      - node_modules/fast-check/**
+      - node_modules/giget/**
+      - node_modules/jiti/**
+      - node_modules/node-fetch-native/**
+      - node_modules/nypm/**
+      - node_modules/ohash/**
+      - node_modules/pathe/**
+      - node_modules/perfect-debounce/**
+      - node_modules/pkg-types/**
+      - node_modules/pure-rand/**
+      - node_modules/rc9/**
+      - node_modules/readdirp/**
+      - node_modules/tinyexec/**
+      - dist-desktop/**/*
+      - renderer-dist/**/*
+      - package.json
+      - '!**/*.map'
+      - '!renderer-dist/.stage-fingerprint.json'
+      - '!resources/postgres{,/**}'
+      - prisma/schema.prisma
+      - prisma/migrations/**/*
+  - from: node_modules/.prisma
+    to: node_modules/.prisma
+    filter:
+      - '**/*'
+asarUnpack:
+  - renderer-dist/**
+  - prisma/**
+  - node_modules/.prisma/**
+  - node_modules/@prisma/**
+  - node_modules/prisma/**
+  - node_modules/@standard-schema/spec/**
+  - node_modules/c12/**
+  - node_modules/chokidar/**
+  - node_modules/citty/**
+  - node_modules/confbox/**
+  - node_modules/consola/**
+  - node_modules/deepmerge-ts/**
+  - node_modules/defu/**
+  - node_modules/destr/**
+  - node_modules/dotenv/**
+  - node_modules/effect/**
+  - node_modules/empathic/**
+  - node_modules/exsolve/**
+  - node_modules/fast-check/**
+  - node_modules/giget/**
+  - node_modules/jiti/**
+  - node_modules/node-fetch-native/**
+  - node_modules/nypm/**
+  - node_modules/ohash/**
+  - node_modules/pathe/**
+  - node_modules/perfect-debounce/**
+  - node_modules/pkg-types/**
+  - node_modules/pure-rand/**
+  - node_modules/rc9/**
+  - node_modules/readdirp/**
+  - node_modules/tinyexec/**
+  - '**/*.node'
+win:
+  executableName: Benben ERP Demo
+  icon: build/icon.ico
+  legalTrademarks: Benben Software, Inc.
+  target:
+    - target: nsis
+      arch:
+        - x64
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  allowElevation: true
+  createDesktopShortcut: always
+  createStartMenuShortcut: true
+  shortcutName: Benben ERP Demo
+  menuCategory: true
+  runAfterFinish: true
+  uninstallDisplayName: Benben ERP Demo
+  installerIcon: build/icon.ico
+  uninstallerIcon: build/icon.ico
+  installerHeaderIcon: build/icon.ico
+  license: resources/LICENSE.txt
+  include: resources/installer.nsh
+  displayLanguageSelector: false
+  artifactName: ${productName}-Setup-${version}.${ext}
+electronVersion: 36.9.5
