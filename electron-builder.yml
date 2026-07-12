@@ -1,6 +1,6 @@
 appId: com.benben.erp
 productName: Benben ERP
-copyright: Copyright © 2026 Benben Software, Inc.
+copyright: Copyright (c) 2026 Benben Software, Inc.
 
 # Installer / artifact naming (Windows RC)
 artifactName: ${productName}-${version}-${os}-${arch}.${ext}

@@ -9,7 +9,7 @@ export const DATA_STAYS_LOCAL_STATEMENT =
   "Your data stays on your machine. Benben Software, Inc. never receives your business records.";
 
 /** In-app and marketing footer line. */
-export const COPYRIGHT_FOOTER = `© 2026 ${COMPANY_SHORT_NAME}. A product of ${COMPANY_LEGAL_NAME}.`;
+export const COPYRIGHT_FOOTER = "Copyright (c) 2026 Benben Software, Inc.";
 
 /** Official legal / licensing contact (installer EULA, Terms, Privacy). */
 export const LEGAL_CONTACT_EMAIL = "legal@benbenerp.com";
