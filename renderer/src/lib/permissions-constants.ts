@@ -131,13 +131,14 @@ export const ROUTE_PERMISSIONS: Record<string, PermissionKey | PermissionKey[]> 
 };
 
 /**
- * Paths that require a valid enterprise license or active trial
- * (in addition to departmental RBAC). Core modules are intentionally omitted.
+ * BSL 1.1 Enterprise Use Restriction (see LICENSE.md):
+ * Manufacturing, Imports, Finance (incl. advanced ledger), and HR / Payroll.
+ * Free Core (CRM, POS, Inventory, Supply Chain, Purchasing) is intentionally omitted.
  */
 export const ENTERPRISE_ROUTES = new Set<string>([
   "/manufacturing",
   "/imports",
-  // Finance
+  // Finance (all finance / ledger screens)
   "/finance-workspace",
   "/finance-reports",
   "/accounting",
@@ -161,8 +162,10 @@ export const ENTERPRISE_ROUTES = new Set<string>([
   "/hr-payroll-config",
 ]);
 
+/** True when `path` is a BSL-restricted Enterprise module route. */
 export function isEnterpriseRoute(path: string): boolean {
-  return ENTERPRISE_ROUTES.has(path);
+  const normalized = (path.split("?")[0] ?? path).split("#")[0]?.replace(/\/+$/, "") || "/";
+  return ENTERPRISE_ROUTES.has(normalized);
 }
 
 /** Preserved baseline paths — same keys as before for compatibility. */

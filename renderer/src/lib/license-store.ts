@@ -108,8 +108,9 @@ function isExpiryPast(expiresAt: string | null | undefined): boolean {
 }
 
 /**
- * Enterprise modules (Manufacturing, Imports, Finance, HR) unlock when the
- * encrypted vault holds a valid license, or when local mode is activated/trial.
+ * BSL 1.1 enterprise entitlement gate (see LICENSE.md).
+ * Active when vault holds a valid non-expired/non-revoked license, or when
+ * local mode is `activated` / non-expired `trial`. Blocks `expired` / `unlicensed`.
  */
 export function isEnterpriseLicenseActive(): boolean {
   const vault = readLocalLicense();
@@ -128,5 +129,6 @@ export function isEnterpriseLicenseActive(): boolean {
     if (isExpiryPast(lic.expiresAt)) return false;
     return trialDaysRemaining() > 0;
   }
+  // Explicitly block expired / unlicensed (and any unknown mode).
   return false;
 }

@@ -1,7 +1,7 @@
 {
-  "builtAt": "2026-07-12T17:44:04.506Z",
+  "builtAt": "2026-07-12T18:47:08.181Z",
   "component": "benben-erp",
-  "version": "0.9.0-rc6",
+  "version": "0.9.0-rc7",
   "releaseChannel": "stable",
   "flavor": "production"
 }
