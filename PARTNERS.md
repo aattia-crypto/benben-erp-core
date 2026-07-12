@@ -1,36 +1,34 @@
-# Benben ERP Partners Program
+# Benben ERP Partner Ecosystem
 
-## A Developer-First, Performance-Based Partner Framework
+Welcome to the Benben ERP source-available repository. Benben ERP is architected from the ground up as a local-first, high-performance ERP system designed to run on a standard local PostgreSQL database with complete data ownership and zero mandatory vendor network calls.
 
-Traditional ERP ecosystems (like Odoo or SAP) lock down their partner networks behind expensive certifications, mandatory annual fees, and rigid tier requirements. We believe that model is broken.
-
-The **Benben ERP Partners Program** (also published as our [Ambassador Program](./AMBASSADOR.md)) is a free, high-performance track built explicitly for independent IT agencies, database administrators, system integrators, and DevOps freelancers. We provide the robust local-first core framework; you own the customer relationships and implementation.
+We built this system to empower independent IT agencies, DevOps freelancers, and regional software integrators to deliver world-class infrastructure to their clients without heavy licensing overhead or rigid partner constraints.
 
 ---
 
-## How the Framework Works
+## The Open-Core Distribution Model
 
-### 1. You Keep 100% of Implementation Fees
-Deploy the free Benben ERP Core for local businesses, manufacturing units, or corporate clients. Customize the workflows, configure their local PostgreSQL databases, manage their server infrastructure, and handle training. You bill the client directly for your services, and **you keep 100% of your consulting and implementation revenue**. We take zero cut.
+Benben ERP divides its capabilities into two distinct tiers under our Business Source License (BSL 1.1), establishing an honest, transparent boundary that benefits both small storefronts and scaling enterprises.
 
-### 2. The Recurring Revenue Engine (30% Lifetime Split)
-As your clients scale, they will inevitably require advanced automation, deeper data analytics, premium enterprise modules, or your managed cloud hosting infrastructure.
-- When they are ready to upgrade, you sell the **Benben ERP Premium Tier** via our integrated Polar billing network.
-- Benben Software handles the licensing engine and core updates.
-- **You pocket a permanent, recurring 30% revenue split** on the software licensing and hosting fees for the entire lifetime of that client.
+### 1. Free Core Tier
+The core of Benben ERP is free and unrestricted for commercial deployment. It provides everything an independent retailer, local distributor, or trading business needs to manage daily operations. 
+* **Included Modules:** CRM (Pipeline Management), Point of Sale (with Loyalty features), Inventory Management, Supply Chain Management, and Purchasing.
+* **Commercial Freedom:** Integrators and consultants can deploy the Free Core for an unlimited number of clients, customize the local environment, and manage the deployment infrastructure. **You retain 100% of your implementation, training, hardware setup, and ongoing maintenance fees.**
 
----
-
-## Targeted Regions
-We are actively recruiting tech-forward partners and independent operators fluent in our core localized regions:
-- **LATAM** (Spanish & Portuguese localized shells)
-- **MEA** (Arabic localized shell)
-- **Europe** (French, German, Spanish, Portuguese localized shells)
+### 2. Premium Enterprise Tier
+For larger, scaling organizations with multi-departmental overhead, complex financial compliance needs, or international logistics, Benben ERP offers advanced corporate modules.
+* **Included Modules:** Manufacturing (Production & Bill of Materials), Imports (Logistics & Tracking), Full Finance (General Ledger, AR/AP, Revenue Recognition, Banking, and Asset Management), and HR / Payroll.
+* **Discovery UI:** These modules remain completely visible within the user interface with a clear visual lock indicator, ensuring your clients are aware of the system's extended capabilities as they grow.
 
 ---
 
-## How to Get Started
+## Simple, No-Bureaucracy Workflow
 
-1. **Fork and Audit:** Review the core architecture right here in this repository. Ensure it meets your local clients' speed, privacy, and compliance standards.
-2. **Deploy Globally, Run Locally:** Spin up your first instance for a test client or internal project using `npm install` and `npm run dev`.
-3. **Register Your Network:** To officially register as a regional Benben Partner and secure your unique Polar referral track, contact us at **support@benbenerp.com**.
+We do not believe in complex partner contracts, manual approval delays, or tracking automated financial affiliate splits. Our relationship with developers is strictly transactional and friction-free:
+
+1. **Build Your Business:** Deploy Benben Core to your clients and charge them directly for your time and expertise.
+2. **Unlock Advanced Features:** When a client outgrows the Core tier and requires the Enterprise modules, you do not need to apply to a program. Simply purchase a Premium License Key directly from the Benben Software, Inc. website on behalf of your client.
+3. **Instant Activation:** Entering the valid license key lifts the Role-Based Access Control (RBAC) restrictions instantly on the local deployment, lighting up the advanced modules without requiring a system reinstall or complex database migrations. Pass the license cost directly through to your client's budget.
+
+## Getting Support & Contributing
+If you are an IT professional deploying Benben ERP in the field, use the issue tracker to report bugs or submit pull requests to improve the core platform. For license acquisition and official documentation updates, visit the main Benben Software, Inc. portal.
