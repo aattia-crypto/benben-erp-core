@@ -2,6 +2,7 @@
  * Licensing foundation — offline-first; no online validation yet.
  */
 
+import { readLocalLicense } from "./licenseStorage";
 import { readStorage, subscribeStorage, writeStorage } from "./storage";
 import { randomUUID } from "./uuid";
 
@@ -90,4 +91,42 @@ export function trialDaysRemaining(): number {
   const start = new Date(lic.trialStartedAt).getTime();
   const elapsed = (Date.now() - start) / (1000 * 60 * 60 * 24);
   return Math.max(0, Math.ceil(TRIAL_DAYS - elapsed));
+}
+
+const INACTIVE_VAULT_STATUSES = new Set([
+  "revoked",
+  "disabled",
+  "suspended",
+  "expired",
+  "inactive",
+]);
+
+function isExpiryPast(expiresAt: string | null | undefined): boolean {
+  if (!expiresAt) return false;
+  const expiry = Date.parse(expiresAt);
+  return !Number.isNaN(expiry) && expiry < Date.now();
+}
+
+/**
+ * Enterprise modules (Manufacturing, Imports, Finance, HR) unlock when the
+ * encrypted vault holds a valid license, or when local mode is activated/trial.
+ */
+export function isEnterpriseLicenseActive(): boolean {
+  const vault = readLocalLicense();
+  if (vault) {
+    const status = (vault.status ?? "").toLowerCase();
+    if (INACTIVE_VAULT_STATUSES.has(status)) return false;
+    if (isExpiryPast(vault.expiresAt)) return false;
+    return true;
+  }
+
+  const lic = getLicense();
+  if (lic.mode === "activated") {
+    return !isExpiryPast(lic.expiresAt);
+  }
+  if (lic.mode === "trial") {
+    if (isExpiryPast(lic.expiresAt)) return false;
+    return trialDaysRemaining() > 0;
+  }
+  return false;
 }

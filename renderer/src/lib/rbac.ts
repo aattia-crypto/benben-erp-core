@@ -9,16 +9,24 @@ import {
   getEnterpriseRoleId,
   hasPermission,
 } from "./permissions-store";
+import { isEnterpriseLicenseActive } from "./license-store";
 import {
   ENTERPRISE_ROLES,
   MODULE_ACCESS,
   ROLES,
   ROUTE_PERMISSIONS,
+  isEnterpriseRoute,
   type Role,
 } from "./permissions-constants";
 
 export type { Role } from "./permissions-constants";
-export { ENTERPRISE_ROLES, MODULE_ACCESS, ROLES, ROUTE_PERMISSIONS };
+export {
+  ENTERPRISE_ROLES,
+  MODULE_ACCESS,
+  ROLES,
+  ROUTE_PERMISSIONS,
+  isEnterpriseRoute,
+};
 
 const USERS_KEY = "benben.users.v1";
 const ROLES_KEY = "benben.user_roles.v1";
@@ -105,13 +113,21 @@ export function isAdmin(): boolean {
   return canManageUsers();
 }
 
-export function canAccess(path: string, _role: Role = getCurrentRole()): boolean {
+/** Departmental permission matrix only — ignores enterprise license state. */
+export function canAccessRbacOnly(path: string, _role: Role = getCurrentRole()): boolean {
   const required = ROUTE_PERMISSIONS[path];
   if (!required) return true;
   const perms = getEffectivePermissions();
   const keys = Array.isArray(required) ? required : [required];
   if (path === "/users" || path === "/locations") return canManageUsers();
   return keys.some((k) => perms[k]);
+}
+
+/** RBAC plus enterprise license gate for designated premium module paths. */
+export function canAccess(path: string, _role: Role = getCurrentRole()): boolean {
+  if (!canAccessRbacOnly(path, _role)) return false;
+  if (isEnterpriseRoute(path) && !isEnterpriseLicenseActive()) return false;
+  return true;
 }
 
 export function canExportReports(): boolean {

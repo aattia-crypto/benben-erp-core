@@ -1,7 +1,17 @@
 import { Link, Outlet, useNavigate, useRouterState } from "@tanstack/react-router";
 import { Search, Bell, LogOut, ShieldCheck } from "lucide-react";
-import { canAccess, useRole, getActingRole, setActingRole, isAdmin } from "@/lib/rbac";
+import {
+  canAccess,
+  canAccessRbacOnly,
+  useRole,
+  getActingRole,
+  setActingRole,
+  isAdmin,
+  isEnterpriseRoute,
+} from "@/lib/rbac";
+import { isEnterpriseLicenseActive, subscribeLicense } from "@/lib/license-store";
 import { AppSidebar } from "@/components/AppSidebar";
+import { PremiumActivationRequired } from "@/components/PremiumActivationRequired";
 import { AiCopilot } from "@/components/ai/AiCopilot";
 import { UpdateNotificationBanner } from "@/components/UpdateNotificationBanner";
 import { useEffect, useState } from "react";
@@ -49,6 +59,9 @@ export function AppLayout() {
   const [, force] = useState(0);
   const role = useRole();
   const acting = getActingRole();
+  const [, setLicenseTick] = useState(0);
+  useEffect(() => subscribeLicense(() => setLicenseTick((n) => n + 1)), []);
+  const enterpriseLicensed = isEnterpriseLicenseActive();
   useEffect(() => {
     if (isWorkspaceInitialized() && !isOnboardingComplete()) {
       markOnboardingComplete();
@@ -274,6 +287,10 @@ export function AppLayout() {
           )}
           {canAccess(path, role) || (realAdmin && path === "/users") ? (
             <Outlet />
+          ) : isEnterpriseRoute(path) &&
+            canAccessRbacOnly(path, role) &&
+            !enterpriseLicensed ? (
+            <PremiumActivationRequired />
           ) : (
             <div className="mx-auto max-w-lg rounded-md border border-warning/30 bg-warning/10 p-6 text-sm">
               <div className="mb-1 flex items-center gap-2 font-semibold text-warning">

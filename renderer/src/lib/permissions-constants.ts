@@ -130,6 +130,41 @@ export const ROUTE_PERMISSIONS: Record<string, PermissionKey | PermissionKey[]> 
   "/users": ["manage_users"],
 };
 
+/**
+ * Paths that require a valid enterprise license or active trial
+ * (in addition to departmental RBAC). Core modules are intentionally omitted.
+ */
+export const ENTERPRISE_ROUTES = new Set<string>([
+  "/manufacturing",
+  "/imports",
+  // Finance
+  "/finance-workspace",
+  "/finance-reports",
+  "/accounting",
+  "/finance-rev-rec",
+  "/customer-360",
+  "/ar",
+  "/customer-ledger",
+  "/ap",
+  "/finance-po-approvals",
+  "/vendor-ledger",
+  "/sales-invoicing",
+  "/finance-bank",
+  "/finance-assets",
+  "/finance-budgets",
+  "/finance-tax",
+  "/finance-currency",
+  // HR / Payroll
+  "/hr-employees",
+  "/hr-timecards",
+  "/hr-payroll-runs",
+  "/hr-payroll-config",
+]);
+
+export function isEnterpriseRoute(path: string): boolean {
+  return ENTERPRISE_ROUTES.has(path);
+}
+
 /** Preserved baseline paths — same keys as before for compatibility. */
 export const MODULE_ACCESS: Record<string, Role[]> = Object.fromEntries(
   Object.keys(ROUTE_PERMISSIONS).map((path) => [path, ["admin"] as Role[]]),

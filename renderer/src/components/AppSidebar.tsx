@@ -32,9 +32,11 @@ import {
   BadgeDollarSign,
   CircleDollarSign,
   Clock,
+  Lock,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { canAccess, useRole, getActingRole, isAdmin } from "@/lib/rbac";
+import { canAccessRbacOnly, useRole, getActingRole, isAdmin, isEnterpriseRoute } from "@/lib/rbac";
+import { isEnterpriseLicenseActive, subscribeLicense } from "@/lib/license-store";
 import { getCompanyName } from "@/lib/workspace-store";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -213,20 +215,27 @@ export function AppSidebar({ sessionOrgName, sessionOrgId, online }: Props) {
   const acting = getActingRole();
   const realAdmin = isAdmin();
   const brandFallback = t("nav.brandFallback");
+  const [enterpriseLicensed, setEnterpriseLicensed] = useState(() => isEnterpriseLicenseActive());
+
+  useEffect(() => subscribeLicense(() => setEnterpriseLicensed(isEnterpriseLicenseActive())), []);
 
   const visibleEntries = useMemo(() => {
     return NAV_ENTRIES.map((entry) => {
       if (entry.type === "link") {
-        if (!canAccess(entry.to, role) && !(realAdmin && entry.to === "/users")) return null;
+        if (!canAccessRbacOnly(entry.to, role) && !(realAdmin && entry.to === "/users")) return null;
         return entry;
       }
       const items = entry.items.filter(
-        (item) => canAccess(item.to, role) || (realAdmin && item.to === "/users"),
+        (item) => canAccessRbacOnly(item.to, role) || (realAdmin && item.to === "/users"),
       );
       if (!items.length) return null;
       return { ...entry, items };
     }).filter(Boolean) as NavEntry[];
   }, [role, realAdmin]);
+
+  function showEnterpriseLock(to: string): boolean {
+    return isEnterpriseRoute(to) && !enterpriseLicensed;
+  }
 
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>(() => {
     const saved = readCollapsed();
@@ -285,15 +294,17 @@ export function AppSidebar({ sessionOrgName, sessionOrgId, online }: Props) {
             const active = isActivePath(path, entry.to);
             const label = t(entry.labelKey);
             const display = entry.shortLabelKey ? t(entry.shortLabelKey) : label;
+            const locked = showEnterpriseLock(entry.to);
             return (
               <Link
                 key={entry.to}
                 to={entry.to}
-                title={label}
+                title={locked ? `${label} · Premium activation required` : label}
                 className={`mb-0.5 ${navLinkClass(active)}`}
               >
                 <entry.icon className="h-4 w-4 shrink-0 opacity-90" aria-hidden />
                 <span className="truncate">{display}</span>
+                {locked ? <Lock className="ml-auto h-3 w-3 shrink-0 opacity-70" aria-label="Premium" /> : null}
               </Link>
             );
           }
@@ -334,11 +345,19 @@ export function AppSidebar({ sessionOrgName, sessionOrgId, online }: Props) {
                     const active = isActivePath(path, item.to);
                     const label = t(item.labelKey);
                     const display = item.shortLabelKey ? t(item.shortLabelKey) : label;
+                    const locked = showEnterpriseLock(item.to);
                     return (
                       <li key={item.to}>
-                        <Link to={item.to} title={label} className={navLinkClass(active)}>
+                        <Link
+                          to={item.to}
+                          title={locked ? `${label} · Premium activation required` : label}
+                          className={navLinkClass(active)}
+                        >
                           <item.icon className="h-4 w-4 shrink-0 opacity-90" aria-hidden />
                           <span className="truncate">{display}</span>
+                          {locked ? (
+                            <Lock className="ml-auto h-3 w-3 shrink-0 opacity-70" aria-label="Premium" />
+                          ) : null}
                         </Link>
                       </li>
                     );
