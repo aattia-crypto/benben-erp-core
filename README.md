@@ -48,3 +48,13 @@ For iterative desktop development after dependencies are installed:
 ```bash
 npm run dev
 ```
+
+## 📥 Download the Standalone Executable
+
+Prefer a production-ready desktop build without compiling from source? Download the official standalone Windows installer from our Polar storefront:
+
+**[Download Benben ERP on Polar](https://polar.sh/benbenerp)**
+
+## 📬 Support & Contact
+
+For security reports, ambassador registration, licensing questions, and general support, contact us at **support@benbenerp.com**.

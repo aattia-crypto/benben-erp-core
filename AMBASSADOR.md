@@ -33,4 +33,4 @@ We are actively recruiting tech-forward ambassadors and independent operators fl
 
 1. **Fork and Audit:** Review the core architecture right here in this repository. Ensure it meets your local clients' speed, privacy, and compliance standards.
 2. **Deploy Globally, Run Locally:** Spin up your first instance for a test client or internal project using `npm install` and `npm run dev`.
-3. **Register Your Network:** To officially register as a regional Benben Ambassador and secure your unique Polar referral track, contact us at **ambassadors@atstaxbridge.com**.
+3. **Register Your Network:** To officially register as a regional Benben Ambassador and secure your unique Polar referral track, contact us at **support@benbenerp.com**.
