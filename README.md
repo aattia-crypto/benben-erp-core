@@ -53,7 +53,7 @@ npm run dev
 
 Prefer a production-ready desktop build without compiling from source? Download the official standalone Windows installer from our Polar storefront:
 
-**[Download Benben ERP on Polar](https://polar.sh/benbenerp)**
+**[Download Benben ERP on Polar](https://buy.polar.sh/polar_cl_QG9zVs4Wm9dSGZpzbcBgyUZnP1zmErpSZ52FE1kTjRY)**
 
 ## 📬 Support & Contact
 
